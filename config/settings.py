@@ -25,7 +25,15 @@ SECRET_KEY = 'django-insecure-%-u0z7_rm9g+@s@4mwfex%^13+35e*-nkzz*oo#2&9vk@k$)$5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "vibeconnect-fepa.onrender.com",
+    "localhost",
+    "127.0.0.1",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://vibeconnect-fepa.onrender.com",
+]
 
 
 # Application definition
