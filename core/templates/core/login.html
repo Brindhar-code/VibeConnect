@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | VibeConnect</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(135deg, #fff7f1, #f1edff);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            width: 100%;
+            max-width: 430px;
+            padding: 42px;
+            border-radius: 26px;
+            box-shadow: 0 20px 60px rgba(67, 48, 120, 0.12);
+            border: 1px solid #f1edf8;
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 29px;
+            font-weight: 800;
+            color: #6554c0;
+            margin-bottom: 30px;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: #f07878;
+        }
+
+        .welcome {
+            text-align: center;
+            color: #29243d;
+            font-size: 27px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #858195;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+
+        .message {
+            background: #fff0f2;
+            color: #c3445b;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            color: #514b68;
+            font-size: 13px;
+            font-weight: 600;
+            margin: 16px 0 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #e5e0ed;
+            border-radius: 12px;
+            font-size: 15px;
+            background: #fcfbff;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        input:focus {
+            border-color: #8978dc;
+            background: white;
+            box-shadow: 0 0 0 4px #6554c015;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 25px;
+            background: linear-gradient(135deg, #6554c0, #8b70db);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px #6554c033;
+        }
+
+        .bottom {
+            text-align: center;
+            margin-top: 25px;
+            color: #858195;
+            font-size: 14px;
+        }
+
+        a {
+            color: #6554c0;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        a:hover {
+            color: #f07878;
+        }
+
+        .home-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 13px;
+            color: #9992aa;
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 30px 24px;
+            }
+
+            .welcome {
+                font-size: 24px;
+            }
+        }
+        .auth-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 22px 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255, 255, 255, 0.85);
+            border-bottom: 1px solid #eee8f5;
+        }
+
+        .brand {
+            font-size: 23px;
+            font-weight: 800;
+            color: #6554c0;
+            text-decoration: none;
+        }
+
+        .brand span {
+            color: #f07878;
+        }
+
+        .auth-header nav {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .auth-header nav a {
+            color: #514b68;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .auth-header nav .nav-button {
+            background: #6554c0;
+            color: white;
+            padding: 11px 18px;
+            border-radius: 10px;
+        }
+
+    @media (max-width: 600px) {
+        .auth-header {
+            padding: 16px 5%;
+        }
+
+        .brand {
+            font-size: 19px;
+        }
+
+        .auth-header nav {
+            gap: 12px;
+        }
+
+        .auth-header nav a {
+            font-size: 12px;
+        }
+    }
+    </style>
+</head>
+
+<body>
+
+    <header class="auth-header">
+        <a class="brand" href="{% url 'home' %}">
+            VibeConnect <span>✦</span>
+        </a>
+
+        <nav>
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'discover' %}">Discover</a>
+            <a href="{% url 'register' %}" class="nav-button">
+                Join VibeConnect
+            </a>
+        </nav>
+    </header>
+
+    <div class="card">
+
+        <div class="logo">
+            VibeConnect <span>✦</span>
+        </div>
+
+        <h2 class="welcome">Welcome back!</h2>
+
+        <p class="subtitle">
+            Your people, your moments, your vibe.<br>
+            Log in and reconnect.
+        </p>
+
+        {% for message in messages %}
+            <p class="message">{{ message }}</p>
+        {% endfor %}
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <label for="email">Email Address</label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your registered email"
+                autocomplete="email"
+                required
+            >
+
+            <label for="password">Password</label>
+            <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter your password"
+                autocomplete="current-password"
+                required
+            >
+
+            <button type="submit">Log In →</button>
+        </form>
+
+        <p class="bottom">
+            New to VibeConnect?
+            <a href="{% url 'register' %}">Create account</a>
+        </p>
+
+        <a class="home-link" href="{% url 'home' %}">
+            ← Back to Home
+        </a>
+
+    </div>
+</body>
+</html>

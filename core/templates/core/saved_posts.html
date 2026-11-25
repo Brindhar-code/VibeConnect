@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saved Posts | VibeConnect</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f6f3;
+            color: #292936;
+        }
+
+        header {
+            background: white;
+            padding: 18px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #292936;
+        }
+
+        .logo span {
+            color: #e47765;
+        }
+
+        header a {
+            color: #e47765;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 45px auto;
+            padding: 20px;
+        }
+
+        .page-title {
+            margin-bottom: 25px;
+        }
+
+        .page-title h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .page-title p {
+            color: #777;
+        }
+
+        .empty-card {
+            background: white;
+            padding: 60px 25px;
+            text-align: center;
+            border-radius: 18px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.04);
+        }
+
+        .heart {
+            font-size: 45px;
+            color: #e47765;
+            margin-bottom: 15px;
+        }
+
+        .empty-card h2 {
+            margin-bottom: 10px;
+        }
+
+        .empty-card p {
+            color: #777;
+            margin-bottom: 25px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: #e47765;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back-btn:hover {
+            background: #d76553;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 15px 5%;
+            }
+
+            .container {
+                margin: 25px auto;
+            }
+
+            .page-title h1 {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">Vibe <span>Connect</span></div>
+    <a href="{% url 'home' %}">← Home Feed</a>
+</header>
+
+<main class="container">
+
+    <div class="page-title">
+        <h1>♡ Saved Posts</h1>
+        <p>Your favorite moments, kept in one place.</p>
+    </div>
+
+    <div class="empty-card">
+        <div class="heart">♡</div>
+        <h2>No saved posts yet</h2>
+        <p>When you save a post, it will appear here.</p>
+
+        <a href="{% url 'home' %}" class="back-btn">
+            Explore Home Feed
+        </a>
+    </div>
+
+</main>
+
+</body>
+</html>

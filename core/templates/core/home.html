@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VibeConnect | Your Social Space</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+:root {
+    --coral: #ff705d;
+    --coral-light: #fff0ed;
+    --indigo: #5145cd;
+    --cream: #fffaf4;
+    --dark: #242238;
+    --muted: #9291a5;
+    --border: #eeeaf2;
+    --white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+}
+
+/* HEADER */
+
+.topbar {
+    height: 76px;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 6%;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 25px;
+    font-weight: 700;
+    color: var(--dark);
+}
+
+.brand-mark {
+    width: 38px;
+    height: 38px;
+    background: var(--coral);
+    color: white;
+    border-radius: 13px;
+    display: grid;
+    place-items: center;
+    font-size: 21px;
+    transform: rotate(-5deg);
+}
+
+.brand span {
+    color: var(--coral);
+}
+
+.search-box {
+    width: 340px;
+    background: #f7f5fa;
+    border: 1px solid transparent;
+    border-radius: 14px;
+    padding: 12px 16px;
+    outline: none;
+    font: inherit;
+    font-size: 13px;
+}
+
+.search-box:focus {
+    border-color: var(--coral);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.icon-btn {
+    border: none;
+    background: #f7f5fa;
+    width: 40px;
+    height: 40px;
+    border-radius: 13px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-weight: 800;
+    flex-shrink: 0;
+}
+
+.avatar-coral {
+    background: #ffe0d8;
+    color: #c64f3d;
+}
+
+.avatar-indigo {
+    background: #e4e0ff;
+    color: #5145cd;
+}
+
+.avatar-yellow {
+    background: #fff0c2;
+    color: #a87914;
+}
+
+.avatar-green {
+    background: #d9f3e4;
+    color: #258451;
+}
+
+.avatar-pink {
+    background: #ffe0f0;
+    color: #c34b87;
+}
+
+/* MAIN LAYOUT */
+
+.app-layout {
+    max-width: 1380px;
+    margin: 30px auto;
+    padding: 0 28px;
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr) 285px;
+    gap: 28px;
+}
+
+/* LEFT NAVIGATION */
+
+.left-panel {
+    position: sticky;
+    top: 105px;
+    height: fit-content;
+}
+
+.user-card {
+    background: white;
+    border-radius: 22px;
+    padding: 22px;
+    text-align: center;
+    border: 1px solid var(--border);
+}
+
+.user-cover {
+    height: 65px;
+    background: linear-gradient(120deg, #ffb6a8, #d8d0ff);
+    border-radius: 15px;
+    margin-bottom: -30px;
+}
+
+.user-card .avatar {
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 10px;
+    border: 5px solid white;
+    font-size: 22px;
+    position: relative;
+}
+
+.user-card h3 {
+    font-size: 16px;
+}
+
+.user-card p {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.user-stats {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    padding-top: 17px;
+    border-top: 1px solid var(--border);
+}
+
+.user-stats strong {
+    display: block;
+    font-size: 15px;
+}
+
+.user-stats small {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.navigation {
+    margin-top: 22px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 12px;
+}
+
+.navigation a {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 13px;
+    margin: 3px 0;
+    text-decoration: none;
+    color: #77758c;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 12px;
+    transition: .2s;
+}
+
+.navigation a:hover,
+.navigation a.active {
+    background: var(--coral-light);
+    color: var(--coral);
+}
+
+.nav-icon {
+    font-size: 19px;
+    width: 24px;
+    text-align: center;
+}
+
+.sidebar-note {
+    margin: 18px 5px;
+    color: #aaa5b7;
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+/* CENTER FEED */
+
+.feed {
+    min-width: 0;
+}
+
+.welcome-banner {
+    background: linear-gradient(115deg, #5145cd, #8175ed);
+    border-radius: 24px;
+    padding: 29px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+
+.welcome-banner::after {
+    content: "✦";
+    position: absolute;
+    right: 35px;
+    top: -25px;
+    font-size: 150px;
+    color: rgba(255,255,255,.12);
+}
+
+.welcome-banner small {
+    color: #ddd8ff;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.welcome-banner h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 29px;
+    margin: 10px 0;
+    position: relative;
+    z-index: 1;
+}
+
+.welcome-banner p {
+    color: #e7e3ff;
+    font-size: 14px;
+    max-width: 380px;
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+}
+
+/* STORIES */
+
+.stories-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 22px;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.section-heading h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+}
+
+.section-heading a {
+    color: var(--coral);
+    font-size: 12px;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.story-list {
+    display: flex;
+    gap: 18px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+}
+
+.story {
+    min-width: 62px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.story-ring {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    padding: 3px;
+    background: linear-gradient(135deg, var(--coral), #a18aff);
+    margin: 0 auto 8px;
+}
+
+.story-ring .avatar {
+    width: 100%;
+    height: 100%;
+    border: 3px solid white;
+    font-size: 17px;
+}
+
+.story-name {
+    font-size: 11px;
+    color: #77758c;
+}
+
+/* COMPOSER */
+
+.composer {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 22px;
+    margin-bottom: 22px;
+}
+
+.composer-top {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 16px;
+}
+
+.composer-top strong {
+    font-size: 14px;
+}
+
+.composer textarea {
+    width: 100%;
+    min-height: 90px;
+    resize: vertical;
+    background: #faf9fc;
+    border: 1px solid #f0edf5;
+    border-radius: 14px;
+    padding: 15px;
+    outline: none;
+    font: inherit;
+    font-size: 14px;
+}
+
+.composer textarea:focus {
+    border-color: #c7c0ff;
+}
+
+.composer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.composer-options {
+    display: flex;
+    gap: 16px;
+    color: #77758c;
+    font-size: 12px;
+}
+
+.composer-options span {
+    cursor: pointer;
+}
+
+.share-btn {
+    background: var(--coral);
+    color: white;
+    border: none;
+    border-radius: 11px;
+    padding: 11px 23px;
+    font-weight: 700;
+    font: inherit;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.share-btn:hover {
+    background: #eb5d4b;
+}
+
+/* POSTS */
+
+.post {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 22px;
+    margin-bottom: 22px;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.post-user {
+    flex: 1;
+}
+
+.post-user h3 {
+    font-size: 14px;
+}
+
+.post-user small {
+    color: var(--muted);
+    font-size: 11px;
+    display: block;
+    margin-top: 4px;
+}
+
+.post-menu {
+    color: #aaa;
+    font-size: 20px;
+}
+
+.post-text {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #55536b;
+    margin: 18px 0;
+}
+
+.post-art {
+    min-height: 175px;
+    border-radius: 15px;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: 25px;
+    margin-bottom: 18px;
+}
+
+.art-one {
+    background: linear-gradient(135deg, #ffe0d7, #fff2d8);
+}
+
+.art-two {
+    background: linear-gradient(135deg, #dcd9ff, #e9e4ff);
+}
+
+.post-art h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 27px;
+    color: #4e416d;
+}
+
+.post-art p {
+    color: #796b92;
+    margin-top: 8px;
+    font-size: 12px;
+}
+
+.post-stats {
+    color: #9995a8;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+}
+
+.post-actions {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 15px;
+}
+
+.post-actions button {
+    background: transparent;
+    border: none;
+    color: #77758c;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.post-actions button:hover {
+    color: var(--coral);
+}
+
+.post-actions button.liked {
+    color: var(--coral);
+}
+
+/* RIGHT PANEL */
+
+.right-panel {
+    position: sticky;
+    top: 105px;
+    height: fit-content;
+}
+
+.right-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 22px;
+    margin-bottom: 20px;
+}
+
+.right-card h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    margin-bottom: 20px;
+}
+
+.person {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 17px;
+}
+
+.person-info {
+    flex: 1;
+}
+
+.person-info strong {
+    display: block;
+    font-size: 12px;
+}
+
+.person-info small {
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.follow-btn {
+    border: 1px solid #e8e3ff;
+    background: #f5f2ff;
+    color: var(--indigo);
+    padding: 7px 10px;
+    border-radius: 9px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.follow-btn.following {
+    background: var(--indigo);
+    color: white;
+}
+
+.trending {
+    padding: 13px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.trending:last-child {
+    border-bottom: none;
+}
+
+.trending small {
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.trending strong {
+    display: block;
+    font-size: 13px;
+    margin: 5px 0;
+}
+
+.trending span {
+    color: var(--coral);
+    font-size: 11px;
+}
+
+.footer {
+    text-align: center;
+    padding: 20px;
+    color: #aaa5b7;
+    font-size: 11px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1100px) {
+    .app-layout {
+        grid-template-columns: 200px minmax(0, 1fr);
+    }
+
+    .right-panel {
+        display: none;
+    }
+}
+
+@media (max-width: 700px) {
+    .topbar {
+        padding: 0 16px;
+        height: 65px;
+    }
+
+    .brand {
+        font-size: 20px;
+    }
+
+    .search-box {
+        display: none;
+    }
+
+    .app-layout {
+        display: block;
+        padding: 0 14px;
+        margin-top: 18px;
+    }
+
+    .left-panel {
+        position: static;
+        margin-bottom: 20px;
+    }
+
+    .user-card {
+        display: none;
+    }
+
+    .navigation {
+        display: flex;
+        overflow-x: auto;
+        padding: 8px;
+    }
+
+    .navigation a {
+        white-space: nowrap;
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .navigation a span:last-child {
+        display: none;
+    }
+
+    .sidebar-note {
+        display: none;
+    }
+
+    .welcome-banner {
+        padding: 23px;
+    }
+
+    .welcome-banner h1 {
+        font-size: 24px;
+    }
+
+    .composer,
+    .post {
+        padding: 17px;
+    }
+
+    .composer-options {
+        gap: 9px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <div class="brand">
+        <div class="brand-mark">v</div>
+        Vibe<span>Connect</span>
+    </div>
+
+    <input
+        type="search"
+        class="search-box"
+        id="searchInput"
+        placeholder="Search people, vibes, posts..."
+    >
+
+    <div class="header-actions">
+        <button class="icon-btn" title="Notifications">♧</button>
+        <div class="avatar avatar-coral">
+            {{ user.username|first|upper }}
+        </div>
+    </div>
+
+    {% if user.is_authenticated %}
+        <span>Welcome, {{ user.username }}</span>
+        <a href="{% url 'logout' %}">Logout</a>
+    {% else %}
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'register' %}">Register</a>
+    {% endif %}
+
+</header>
+
+<div class="app-layout">
+
+    <!-- LEFT SIDEBAR -->
+
+    <aside class="left-panel">
+
+        <section class="user-card">
+
+            <div class="user-cover"></div>
+
+            <div class="avatar avatar-coral">
+                {{ user.username|first|upper }}
+            </div>
+
+            <h3>{{ user.username }}</h3>
+
+            <p>Creator · Student</p>
+
+            <div class="user-stats">
+                <div>
+                    <strong>{{ total_posts }}</strong>
+                    <small>Posts</small>
+                </div>
+
+                <div>
+                    <strong>248</strong>
+                    <small>Followers</small>
+                </div>
+
+                <div>
+                    <strong>180</strong>
+                    <small>Following</small>
+                </div>
+            </div>
+
+        </section>
+
+        <nav class="navigation">
+
+            <a href="{% url 'home' %}" class="active">
+                <span class="nav-icon">⌂</span>
+                <span>Home Feed</span>
+            </a>
+
+            <a href="{% url 'discover' %}">
+                <span class="nav-icon">◉</span>
+                <span>Discover</span>
+            </a>
+
+            <a href="{% url 'communities' %}">
+                <span class="nav-icon">♧</span>
+                <span>Communities</span>
+            </a>
+
+            <a href="{% url 'messages' %}">
+                <span class="nav-icon">✉</span>
+                <span>Messages</span>
+            </a>
+
+            <a href="{% url 'saved_posts' %}">
+                <span class="nav-icon">♡</span>
+                <span>Saved Posts</span>
+            </a>
+
+            <a href="{% url 'profile' %}">
+                <span class="nav-icon">☻</span>
+                <span>My Profile</span>
+            </a>
+
+        </nav>
+
+        <p class="sidebar-note">
+            Made for sharing ideas, creating memories
+            and finding your people.
+        </p>
+
+    </aside>
+
+    <!-- MAIN FEED -->
+
+    <main class="feed">
+
+        <section class="welcome-banner">
+
+            <small>YOUR SPACE. YOUR PEOPLE.</small>
+
+            <h1>Find your kind of vibe ✨</h1>
+
+            <p>
+                A little space to share your world,
+                discover new ideas and connect with
+                people who inspire you.
+            </p>
+
+        </section>
+
+        <!-- STORIES -->
+
+        <section class="stories-card">
+
+            <div class="section-heading">
+                <h2>Little Moments</h2>
+                <a href="#">View all</a>
+            </div>
+
+            <div class="story-list">
+
+                <div class="story">
+                    <div class="story-ring">
+                        <div class="avatar avatar-coral">+</div>
+                    </div>
+                    <div class="story-name">Your story</div>
+                </div>
+
+                <div class="story">
+                    <div class="story-ring">
+                        <div class="avatar avatar-indigo">A</div>
+                    </div>
+                    <div class="story-name">Ananya</div>
+                </div>
+
+                <div class="story">
+                    <div class="story-ring">
+                        <div class="avatar avatar-yellow">R</div>
+                    </div>
+                    <div class="story-name">Rahul</div>
+                </div>
+
+                <div class="story">
+                    <div class="story-ring">
+                        <div class="avatar avatar-green">S</div>
+                    </div>
+                    <div class="story-name">Sneha</div>
+                </div>
+
+                <div class="story">
+                    <div class="story-ring">
+                        <div class="avatar avatar-pink">K</div>
+                    </div>
+                    <div class="story-name">Kavin</div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- POST COMPOSER -->
+
+        <section class="composer">
+
+            <form method="POST" action="{% url 'home' %}">
+
+                {% csrf_token %}
+
+                <div class="composer-top">
+                    <div class="avatar avatar-coral">
+                        {{ user.username|first|upper }}
+                    </div>
+
+                    <strong>Share a little piece of your world</strong>
+                </div>
+
+                <textarea
+                    id="postInput"
+                    name="content"
+                    placeholder="What's your vibe today?"
+                    required
+                ></textarea>
+
+                <div class="composer-bottom">
+
+                    <div class="composer-options">
+                        <span>📷 Photo</span>
+                        <span>😊 Mood</span>
+                        <span>📍 Moment</span>
+                    </div>
+
+                    <button class="share-btn" type="submit">
+                        Share Post
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+        <!-- DATABASE POSTS -->
+
+        {% for post in posts %}
+
+        <article class="post">
+
+            <div class="post-header">
+
+                <div class="avatar avatar-coral">
+                    {{ post.author_name|first|upper }}
+                </div>
+
+                <div class="post-user">
+                    <h3>{{ post.author_name }}</h3>
+                    <small>{{ post.created_at|timesince }} ago</small>
+                </div>
+
+                <div class="post-menu">···</div>
+
+            </div>
+
+            <p class="post-text">{{ post.content }}</p>
+
+            <div class="post-stats">
+                <span class="like-count">
+                    ♡ {{ post.like_count }} people liked this
+                </span>
+                <span>0 comments</span>
+            </div>
+
+            <div class="post-actions">
+
+                <form method="POST" action="{% url 'home' %}">
+                    {% csrf_token %}
+
+                    <input
+                        type="hidden"
+                        name="action"
+                        value="like"
+                    >
+
+                    <input
+                        type="hidden"
+                        name="post_id"
+                        value="{{ post.id }}"
+                    >
+
+                    <button
+                        type="submit"
+                        class="like-btn {% if post.liked_by_brindha %}liked{% endif %}"
+                    >
+                        {% if post.liked_by_brindha %}
+                            ♥ Liked
+                        {% else %}
+                            ♡ Like
+                        {% endif %}
+                    </button>
+
+                </form>
+
+                <button type="button">💬 Comment</button>
+                <button type="button">↗ Share</button>
+
+            </div>
+
+        </article>
+
+        {% empty %}
+
+        <div class="post">
+            <h3>Welcome to VibeConnect! ✨</h3>
+            <p class="post-text">
+                No posts yet. Be the first to share something with your community!
+            </p>
+        </div>
+
+        {% endfor %}
+
+    </main>
+
+    <!-- RIGHT PANEL -->
+
+    <aside class="right-panel">
+
+        <section class="right-card">
+
+            <h2>People you may like</h2>
+
+            <div class="person">
+
+                <div class="avatar avatar-pink">S</div>
+
+                <div class="person-info">
+                    <strong>Sneha Kumar</strong>
+                    <small>Creative mind</small>
+                </div>
+
+                <button class="follow-btn">Follow</button>
+
+            </div>
+
+            <div class="person">
+
+                <div class="avatar avatar-yellow">K</div>
+
+                <div class="person-info">
+                    <strong>Kavin Raj</strong>
+                    <small>Developer</small>
+                </div>
+
+                <button class="follow-btn">Follow</button>
+
+            </div>
+
+            <div class="person">
+
+                <div class="avatar avatar-indigo">M</div>
+
+                <div class="person-info">
+                    <strong>Meera S.</strong>
+                    <small>Student</small>
+                </div>
+
+                <button class="follow-btn">Follow</button>
+
+            </div>
+
+        </section>
+
+        <section class="right-card">
+
+            <h2>Trending vibes 🔥</h2>
+
+            <div class="trending">
+                <small>Technology · Trending</small>
+                <strong>#BuildInPublic</strong>
+                <span>2.4k posts</span>
+            </div>
+
+            <div class="trending">
+                <small>Community · Popular</small>
+                <strong>#StudentLife</strong>
+                <span>1.8k posts</span>
+            </div>
+
+            <div class="trending">
+                <small>Creativity · Trending</small>
+                <strong>#CreativeCorner</strong>
+                <span>950 posts</span>
+            </div>
+
+        </section>
+
+    </aside>
+
+</div>
+
+<footer class="footer">
+    © 2026 VibeConnect · Find your people, share your vibe.
+</footer>
+
+<!-- UPDATED JAVASCRIPT -->
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    // Follow / Unfollow button
+    document.querySelectorAll(".follow-btn").forEach(function (button) {
+        button.addEventListener("click", function () {
+
+            if (button.textContent.trim() === "Follow") {
+                button.textContent = "Following";
+                button.classList.add("following");
+            } else {
+                button.textContent = "Follow";
+                button.classList.remove("following");
+            }
+
+        });
+    });
+
+    // Search posts in the feed
+    const searchInput = document.getElementById("searchInput");
+
+    if (searchInput) {
+        searchInput.addEventListener("input", function () {
+            const query = searchInput.value.toLowerCase().trim();
+
+            document.querySelectorAll(".post").forEach(function (post) {
+                const postText = post.textContent.toLowerCase();
+
+                post.style.display = postText.includes(query)
+                    ? ""
+                    : "none";
+            });
+        });
+    }
+
+});
+</script>
+
+</body>
+</html>
